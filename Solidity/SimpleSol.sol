@@ -3,14 +3,13 @@
 pragma solidity 0.8.24;
 
 contract SimpleStorage{ 
-    uint256 fav = 25;
+    uint256 fav;
 
     // Simple addMe function 
 
-    // function addMe(uint256 _fav) public { 
-    //     fav = _fav;
-    //     getVal();
-    // }
+    function store(uint256 _fav) public virtual  { 
+        fav = _fav;
+    }
 
     struct Person{ 
         string name;
@@ -49,6 +48,10 @@ contract SimpleStorage{
         listnodes[_name] = _favNum;
     }
 
+    function getPerson(uint256 _num) public view returns(string memory , uint256){ 
+        Person storage person = listOfPersons[_num];
+        return(person.name,person.favNum);
+    }
     // view is used only to get access to the valuews with in the state 
     // pure is used to return only the numbers not the variables which are declared 
 
